@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generate Ethereum Wallet</title>
+    <script src="https://cdn.ethers.io/lib/ethers-5.2.umd.min.js" type="application/javascript"></script>
+    <script>
+
+        function makeWallet(params) {
+            const wallet = ethers.Wallet.createRandom();
+            return [wallet.address, wallet.mnemonic.phrase, wallet.privateKey ];
+        }
+
+        function generate() {
+            let [address, phrase, key] = makeWallet()
+            document.getElementById("wallet-address").innerText = address;
+            document.getElementById("mnemonic-phrase").innerText = phrase;
+            document.getElementById("private-key").innerText = key;
+        }
+    </script>
+</head>
+<body>
+    <h1>Generate an Ethereum Wallet</h1>    
+    <p><button onclick="generate()">Generate</button></p>
+    <p>Wallet Address: <code id="wallet-address"></code></p>
+    <p>Mnemonic Phrase: <code id="mnemonic-phrase"></code></p>
+    <p>Private Key: <code id="private-key"></code></p>
+    <hr>
+    <p>Source code: <a href="https://github.com/recklesslabs/generate-eth-wallet-client"> <code>generate-eth-wallet-client</code></a></p>
+    <p>Made with ❤️ by <a href="https://recklesslabs.co/">Reckless Labs</a></p>
+</body>
+</html>
